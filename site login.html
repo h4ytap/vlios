@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Inloggen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Red Hat Display', sans-serif;
+      background-color: #fff;
+      font-size: 1.3em;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left-section {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .header {
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 3.5em; /* Groter dan standaard */
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-weight: 600;
+      color: #666;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #maskedInput {
+      font-size: 24px;
+      letter-spacing: 6px;
+      width: 280px;
+      padding: 18px 20px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 700;
+      text-align: center;
+      caret-color: transparent;
+    }
+
+    button {
+      font-size: 16px; /* originele grootte */
+      padding: 10px 20px;
+      background-color: #1A5FF4;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    #error {
+      color: red;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .right-section {
+      flex: 1;
+      background: url('https://github.com/h4ytap/vlios/blob/main/bg%20login.png?raw=true') no-repeat center center;
+      background-size: cover;
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="left-section">
+    <div class="header">
+      <h1>Inloggen</h1>
+      <p>Vul je klassencode in.</p>
+    </div>
+
+    <div class="form">
+      <input type="text" id="maskedInput" value="-------" maxlength="15">
+      <button onclick="validateCode()">Koppelen</button>
+      <div id="error"></div>
+    </div>
+  </div>
+
+  <div class="right-section"></div>
+
+  <script>
+    const input = document.getElementById('maskedInput');
+    const correctCode = '73928416';
+    let digits = [];
+
+    input.addEventListener('keydown', function(e) {
+      const key = e.key;
+
+      if (key === 'Backspace') {
+        e.preventDefault();
+        digits.pop();
+      } else if (/^\d$/.test(key) && digits.length < 8) {
+        e.preventDefault();
+        digits.push(key);
+      } else if (key.length === 1) {
+        e.preventDefault();
+      }
+
+      updateDisplay();
+    });
+
+    function updateDisplay() {
+      let display = '';
+      for (let i = 0; i < 8; i++) {
+        display += digits[i] || '-';
+      }
+      input.value = display;
+    }
+
+    function validateCode() {
+      const inputCode = digits.join('');
+      const error = document.getElementById('error');
+
+      if (inputCode === correctCode) {
+        window.location.href = '/klas-dashboard';
+      } else {
+        error.textContent = 'Ongeldige klassencode. Probeer het opnieuw.';
+      }
+    }
+  </script>
+
+</body>
+</html>
