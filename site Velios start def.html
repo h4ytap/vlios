@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Header Navigatie</title>
+  <style>
+    body {
+      margin: 0;
+      background-image: url("https://github.com/h4ytap/vlios/blob/main/bg%20def.png?raw=true");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: sans-serif;
+      height: 100%;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: white;
+      border-radius: 16px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-button {
+      width: 120px;
+      height: 40px;
+      border-radius: 24px;
+      border: none;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: filter 0.2s ease, transform 0.2s ease;
+      background-color: #FFFFFF;
+    }
+
+    .nav-button:hover {
+      filter: brightness(70%);
+    }
+
+    .nav-button:active {
+      transform: scale(0.98);
+    }
+
+    /* Knoppen met afbeeldingen */
+    .btn1 { background-image: url('https://github.com/h4ytap/vlios/blob/main/btn%20hdr%20Games.png?raw=true'); }
+    .btn2 { background-image: url('https://github.com/h4ytap/vlios/blob/main/btn%20hdr%20Tools.png?raw=true'); }
+    .btn3 { background-image: url('https://github.com/h4ytap/vlios/blob/main/btn%20hdr%20Themas.png?raw=true'); }
+    .btn4 { background-image: url('https://github.com/h4ytap/vlios/blob/main/btn%20hdr%20Archief.png?raw=true'); }
+    .btn5 { background-image: url('https://via.placeholder.com/120x40/FF7F50/000000?text=5'); }
+
+    /* Mobiele optimalisatie */
+    @media screen and (max-width: 600px) {
+      .nav-button {
+        width: 90px;
+        height: 30px;
+      }
+      .logo {
+        height: 40px;
+      }
+    }
+
+    /* Overlay stijl */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .overlay-content {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://github.com/h4ytap/vlios/blob/main/logo%20start%20def.png?raw=true" alt="Logo" class="logo" />
+    <div class="button-container">
+      <button class="nav-button btn1" onclick="openOverlay('overlay1')"></button>
+      <button class="nav-button btn2" onclick="openOverlay('overlay2')"></button>
+      <button class="nav-button btn3" onclick="location.href='pagina3.html'"></button>
+      <button class="nav-button btn4" onclick="location.href='pagina4.html'"></button>
+      <button class="nav-button btn5" onclick="location.href='pagina5.html'"></button>
+    </div>
+  </header>
+
+  <!-- Overlay 1 -->
+  <div id="overlay1" class="overlay">
+    <div class="overlay-content">
+      <h2>Overlay 1 Inhoud</h2>
+      <p>Hier komt de inhoud van overlay 1.</p>
+      <button class="close-btn" onclick="closeOverlay('overlay1')">Sluiten</button>
+    </div>
+  </div>
+
+  <!-- Overlay 2 -->
+  <div id="overlay2" class="overlay">
+    <div class="overlay-content">
+      <h2>Overlay 2 Inhoud</h2>
+      <p>Hier komt de inhoud van overlay 2.</p>
+      <button class="close-btn" onclick="closeOverlay('overlay2')">Sluiten</button>
+    </div>
+  </div>
+
+  <script>
+    function openOverlay(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeOverlay(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
